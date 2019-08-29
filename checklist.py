@@ -44,15 +44,20 @@ def select(function_code):
         item_index = user_input("Index Number? ")
 
         # Remember that item_index must actually exist or our program will crash.
-        read(int(item_index))
+        print(read(int(item_index)))
 
     # Print all items
     elif function_code == "P":
         list_all_items()
 
+    # Quit
+    elif function_code == "Q":
+        return False
+
     # Catch all
     else:
         print("Unknown Option")
+    return True
 
 def user_input(prompt):
     # the input function will display a message in the terminal
@@ -79,15 +84,21 @@ def test():
 
     mark_completed(1)
 
-    # Call your new function with the appropriate value
-    select("C")
-    # View the results
-    list_all_items()
-    # Call function with new value
-    select("R")
-    # View results
-    list_all_items()
-    # Continue until all code is run
+    # # Call your new function with the appropriate value
+    # select("C")
+    # # View the results
+    # list_all_items()
+    # # Call function with new value
+    # select("R")
+    # # View results
+    # list_all_items()
+    # # Continue until all code is run
 
 # Run Tests
 test()
+
+running = True
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list, P to display list, and Q to quit ")
+    running = select(selection)
