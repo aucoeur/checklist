@@ -20,24 +20,36 @@ def update(index, item):
 def destroy(index):
     checklist.pop(index)
 
-# def list_all_items():
-#     index = 0
-#     for list_item in checklist:
-#         print(str(index) + list_item)
-#         index += 1
+def list_all_items():
+    index = 0
+    for list_item in checklist:
+        print("{} {}".format(index, list_item))
+        index += 1
+
+# Mark Complete
+def mark_completed(index):
+    update(index, "√ " + checklist[index])
+    print("Marked" + checklist[index] + ". Updated Checklist:")
+    list_all_items()
 
 # TEST
 def test():
     create("purple sox")
-    create("red cloak")
+    #create("red cloak")
 
-    print(read(0))
-    print(read(1))
+    #print(read(0))
+    #print(read(1))
 
-    update(0, "purple socks")
-    destroy(1)
+    update(0, "Purple Socks")
+    #destroy(1)
 
-    print(read(0))
-    print(read(1)) 
+
+    #print(read(0))
+    create("Yellow Shoes")
+    create("Green Watch")
+    create("Orange Shirt")
+    list_all_items()
+
+    mark_completed(1)
 
 test()
