@@ -32,6 +32,15 @@ def mark_completed(index):
     print("Marked " + checklist[index] + ". Updated Checklist:")
     list_all_items()
 
+# Check if index is valid
+def check_input(input):
+    if int(input) >= len(checklist):
+        print("Invalid Index.  Please try again. ")
+        return True
+    else:
+        return False
+
+
 # Select
 def select(function_code):
     # Create item
@@ -41,14 +50,21 @@ def select(function_code):
 
     # Read item
     elif function_code == "R":
-        item_index = user_input("Index Number? ")
-
+        invalid = True
+        while invalid:
+            index = user_input("Index Number? ")
+            invalid = check_input(index)
         # Remember that item_index must actually exist or our program will crash.
-        print(read(int(item_index)))
+        print("Item: " + read(int(index)))
     
     elif function_code == "U":
         list_all_items()
-        index = user_input("Update which item? (Select index) ")
+
+        invalid = True
+        while invalid:
+            index = user_input("Update which item? (Select index) ")
+            invalid = check_input(index)
+
         item = user_input("Change to: ")
         update(int(index), item)
         print("Item changed. Updated List below:")
@@ -56,7 +72,12 @@ def select(function_code):
     
     elif function_code == "D":
         list_all_items()
-        index = user_input("Delete which item? (Select index) ")
+
+        invalid = True
+        while invalid:
+            index = user_input("Delete which item? (Select index) ")
+            invalid = check_input(index)
+
         destroy(int(index))
         print("Item deleted.  Updated List below: ")
         list_all_items()
@@ -99,15 +120,18 @@ def test():
 
     mark_completed(1)
 
-    # # Call your new function with the appropriate value
-    # select("C")
-    # # View the results
-    # list_all_items()
-    # # Call function with new value
-    # select("R")
-    # # View results
-    # list_all_items()
-    # # Continue until all code is run
+    # Call your new function with the appropriate value
+    select("C")
+    # View the results
+    list_all_items()
+    # Call function with new value
+    select("R")
+    # View results
+    list_all_items()
+    # Continue until all code is run
+    select("U")
+    # Call function with new value
+    select("D")
 
 # Run Tests
 test()
