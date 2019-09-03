@@ -89,6 +89,19 @@ def select(function_code):
     # Quit
     elif function_code == "Q":
         return False
+    
+    elif function_code == "X":
+        list_all_items()
+        
+        invalid = True
+        while invalid:
+            index = user_input("Mark which item complete? (Select index) ")
+            invalid = check_input(index)
+
+        mark_completed(int(index))
+        print('Updated List Below: ')
+        list_all_items()
+
 
     # Catch all
     else:
@@ -139,5 +152,5 @@ test()
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list, P to display list, U to update item, D to delete item, and Q to quit ")
+        "Press C to add to list, R to Read from list, P to display list, U to update item, D to delete item, X to mark complete and Q to quit ")
     running = select(selection.upper())
